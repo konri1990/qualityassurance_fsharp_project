@@ -8,15 +8,18 @@ start chrome
 
 pin FullScreen
 
-"Open React Todo Application" &&& fun _ -> 
+"Open react todo application" &&& fun _ -> 
     TodoApp.Todos.openPage("http://todomvc.com/examples/react/#/")
     
-"Add One Todo Item" &&& fun _ ->
+"Add one todo item" &&& fun _ ->
     let itemTitle = "Write main test page"
     TodoApp.Todos.addItem(itemTitle)
     TodoApp.Todos.checkIfExistsInTodos(itemTitle)
 
-"Add items and check if counter is correct" &&& fun _ ->
+"Remove first item from list" &&& fun _ ->
+    TodoApp.Todos.removeFirstItemFromList();
+
+"Add items and check if total items is displayed correctly" &&& fun _ ->
     let oneItem = "Adding one item"
     let secondItem = "Adding second item"
     let thirdItem = "Adding third item"
@@ -28,6 +31,30 @@ pin FullScreen
     TodoApp.Todos.checkIfExistsInTodos(thirdItem)
     
     TodoApp.Todos.counterShouldBeEqual(3)
+
+"Mark 2 items as active" &&& fun _ ->
+    TodoApp.Todos.markAsActive(1);
+    TodoApp.Todos.markAsActive(2);
+
+"Display only active items" &&& fun _ ->
+    TodoApp.Todos.clickActive();
+    TodoApp.Todos.counterShouldBeEqual(1);
+
+"Display all items" &&& fun _ ->
+    TodoApp.Todos.clickAll();
+    //todo count number of li elements for validation
+
+"Display active items" &&& fun _ ->
+    TodoApp.Todos.clickAll();
+    //todo count number of li elements for validation
+
+"Display completed items" &&& fun _ ->
+    TodoApp.Todos.clickAll();
+    //todo count number of li elements for validation
+
+"Click clear completed" &&& fun _ ->
+    TodoApp.Todos.clickClearCompleted();
+    //todo count number of li elements for validation
 
 run()
 

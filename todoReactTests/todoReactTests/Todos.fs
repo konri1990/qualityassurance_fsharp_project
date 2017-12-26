@@ -20,3 +20,26 @@ module Todos =
     let counterShouldBeEqual(numberOfItems:int) = 
         let number = read (element ".todo-count strong:first") |> int
         numberOfItems === number
+
+    let removeFirstItemFromList() = 
+        hover ".todo-list li:first"
+        click ".destroy"
+
+    let markAsActive(which:int) = 
+        click (nth which ".toggle")
+
+    let clickActive() =
+        let activeLink = read (elementWithText ".filters li a" "Active")    
+        click activeLink
+
+    let clickAll() =
+        let allLink = read (elementWithText ".filters li a" "All")    
+        click allLink
+
+    let clickCompleted() =
+        let allLink = read (elementWithText ".filters li a" "Completed")    
+        click allLink
+    
+    let clickClearCompleted() =
+        let allLink = read (element ".filters li button")    
+        click allLink
